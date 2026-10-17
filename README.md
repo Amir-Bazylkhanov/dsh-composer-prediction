@@ -9,13 +9,6 @@ to dismiss it, or just start typing to discard it. Turn the whole thing off in
 **Settings → Predictions**, a dedicated Settings section this plugin
 contributes (`settings.section`), because the shipped Plugins page is read-only.
 
-This is the DSH counterpart of the OpenCode feature proposed in
-[anomalyco/opencode#54197](https://github.com/anomalyco/opencode/pull/54197)
-(`context.ui.prompt.suggest`, Tab to accept, Escape to dismiss) and the closed
-[#20309](https://github.com/anomalyco/opencode/pull/20309): same contract, same
-gestures, implemented against DSH's slot/plugin runtime because DSH does not
-accept external pull requests (see [CONTRIBUTING.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/CONTRIBUTING.md)).
-
 ## Behaviour
 
 | Event | Result |
@@ -31,9 +24,6 @@ accept external pull requests (see [CONTRIBUTING.md](https://github.com/deepseek
 | You switch the feature off and back on | Forgets the session's offer and "already asked" marker, then predicts again immediately |
 | You accept, dismiss, start a new turn, or disable the feature | The offer is discarded and any in-flight request is cancelled |
 | A response arrives late or for an older turn | Dropped — it can never replace or resurrect a newer offer |
-
-Suggestions never enter the draft, the transcript or session history until you
-accept one, mirroring #54197's rule that offers are ephemeral.
 
 ## Install
 
