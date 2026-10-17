@@ -1,4 +1,4 @@
-# dsh-composer-predict bundle patch: inserts the host half into the
+# dsh-composer-prediction bundle patch: inserts the host half into the
 # composition. The host half persists its own config document
 # (`<dsh home>/composer-predict.json`) and owns the loopback RPC route
 # /api/composer-predict/rpc:
@@ -19,5 +19,5 @@
 # is optional.
 - insert:
     - id: composer-predict
-      name: dsh-composer-predict
+      name: dsh-composer-prediction
       inject: [connection, llm]

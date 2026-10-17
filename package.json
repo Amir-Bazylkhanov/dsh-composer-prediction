@@ -1,5 +1,5 @@
 {
-  "name": "dsh-composer-predict",
+  "name": "dsh-composer-prediction",
   "version": "0.7.2",
   "description": "Codex-style composer predictions for DeepSeek Harness: after each assistant turn, suggest the user's next message as ghost text in the composer. Tab accepts, Escape dismisses.",
   "type": "module",

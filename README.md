@@ -1,4 +1,4 @@
-# dsh-composer-predict
+# dsh-composer-prediction
 
 Codex-style **composer predictions** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
 
@@ -30,13 +30,13 @@ contributes (`settings.section`), because the shipped Plugins page is read-only.
 From the npm registry (once published):
 
 ```sh
-dsh plugin --profile <your-profile> add dsh-composer-predict
+dsh plugin --profile <your-profile> add dsh-composer-prediction
 ```
 
 Or straight from a checkout:
 
 ```sh
-dsh plugin --profile <your-profile> add ./dsh-composer-predict --config.auto-install-peers=false
+dsh plugin --profile <your-profile> add ./dsh-composer-prediction --config.auto-install-peers=false
 ```
 
 `dsh` links the package into the profile and appends the bundle to
@@ -49,12 +49,12 @@ Verify the layer composed without booting:
 dsh --profile <your-profile> --dump-config
 ```
 
-You should see a `# == dsh-composer-predict` layer and a `composer-predict` row.
+You should see a `# == dsh-composer-prediction` layer and a `composer-predict` row.
 
 Remove it with:
 
 ```sh
-dsh plugin --profile <your-profile> remove dsh-composer-predict
+dsh plugin --profile <your-profile> remove dsh-composer-prediction
 ```
 
 ## Configuration

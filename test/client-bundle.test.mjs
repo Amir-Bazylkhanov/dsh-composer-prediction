@@ -54,7 +54,7 @@ function fakeRequire(id) {
 
 test('bundle exposes the expected id and plugin shape', () => {
 	const { definition } = loadBundle()
-	assert.equal(definition.id, 'dsh-composer-predict')
+	assert.equal(definition.id, 'dsh-composer-prediction')
 	const plugin = definition.factory(fakeRequire)
 	assert.deepEqual(Array.from(plugin.inject), ['slots', 'locale', 'connection'])
 	assert.equal(typeof plugin.apply, 'function')

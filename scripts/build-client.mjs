@@ -13,7 +13,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const ID = 'dsh-composer-predict'
+const ID = 'dsh-composer-prediction'
 
 /** Drop module syntax: shared.js and client-body.js are concatenated into one scope. */
 function toScript(source, file) {
