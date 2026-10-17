@@ -20,6 +20,17 @@ const icon = `data:image/svg+xml;base64,${Buffer.from(match[1], 'utf8').toString
 const author = String(pkg.author ?? '').replace(/\s*\([^)]*\)\s*$/, '').trim()
 const repositoryUrl = String(pkg.repository?.url ?? '').replace(/^git\+/, '').replace(/\.git$/, '')
 
+// Keep the recorded publish time stable for an already-listed version, so a
+// regeneration only changes the index when the version does (CI checks this).
+let publishTimestamp = Math.floor(Date.now() / 1000)
+try {
+	const previous = JSON.parse(readFileSync(join(root, 'market/index.json'), 'utf8'))
+	const listed = previous.plugins?.flatMap((plugin) => plugin.versions ?? []).find((entry) => entry.version === pkg.version)
+	if (typeof listed?.publishTimestamp === 'number') publishTimestamp = listed.publishTimestamp
+} catch {
+	/* first generation, or an unreadable index: stamp now */
+}
+
 const index = {
 	format: 1,
 	title: { en: 'Amir Bazylkhanov plugins', zh: 'Amir Bazylkhanov 插件' },
@@ -38,7 +49,7 @@ const index = {
 			versions: [
 				{
 					version: pkg.version,
-					publishTimestamp: Math.floor(Date.now() / 1000),
+					publishTimestamp,
 					source: { type: 'npm' },
 					...(pkg.engines?.dsh === undefined ? {} : { engines: { dsh: pkg.engines.dsh } }),
 				},
