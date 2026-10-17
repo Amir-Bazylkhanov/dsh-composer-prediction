@@ -174,10 +174,9 @@ __composerPredict.predictNow()   // re-run the real prediction path
 ## Credits
 
 The Settings navigation glyph is from [SVG Repo](https://www.svgrepo.com) and is
-used under SVG Repo's default licence (use in a project and remixing permitted;
-credit appreciated, not required). It has been modified: cropped viewBox, filled
-with `currentColor` via an alpha mask. Individual icon pages may state a stricter
-licence — see [NOTICE](NOTICE) for the attribution and the exact modification.
+**CC0 1.0** (public domain; no attribution required — the credit is a courtesy).
+It has been modified: cropped viewBox, filled with `currentColor` via an alpha
+mask. See [NOTICE](NOTICE) for details.
 
 ## License
 
