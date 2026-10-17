@@ -57,6 +57,18 @@ Remove it with:
 dsh plugin --profile <your-profile> remove dsh-composer-prediction
 ```
 
+### Install from the Discover tab
+
+[`market/index.json`](market/index.json) is a ready-to-host plugin-market index
+listing this package. Turn on **Custom plugin markets**, then add this URL under
+**Plugins → Discover → Add index source**:
+
+```
+https://raw.githubusercontent.com/Amir-Bazylkhanov/dsh-composer-prediction/main/market/index.json
+```
+
+Regenerate it after a release with `npm run market`.
+
 ## Configuration
 
 Everything lives in `$DSH_HOME/composer-predict.json` and in the Settings page.

@@ -59,6 +59,7 @@
   },
   "scripts": {
     "build": "node scripts/build-client.mjs",
+    "market": "node scripts/build-market.mjs",
     "test": "node scripts/test.mjs",
     "check": "node scripts/build-client.mjs && node scripts/test.mjs && node --check lib/index.js && node --check lib/client.js",
     "prepack": "npm run check"

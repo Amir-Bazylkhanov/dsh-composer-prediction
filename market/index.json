@@ -1,0 +1,38 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Amir Bazylkhanov plugins",
+    "zh": "Amir Bazylkhanov 插件"
+  },
+  "plugins": [
+    {
+      "name": "dsh-composer-prediction",
+      "title": {
+        "en": "Composer predictions",
+        "zh": "输入框预测"
+      },
+      "description": {
+        "en": "Codex-style ghost-text suggestions for your next message in the DSH composer. Tab accepts, Esc dismisses.",
+        "zh": "在 DSH 输入框中用灰色 ghost 文本建议你的下一条消息。Tab 采纳，Esc 关闭。"
+      },
+      "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNy4yNSIgdmlld0JveD0iNC41IDMuNzUgMTUgMTcuMjUiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuNSAxNi41TDE5LjUgNC41TDE4Ljc1IDMuNzVIOUw4LjI1IDQuNUw4LjI1IDcuNUw1LjI1IDcuNUw0LjUgOC4yNVYyMC4yNUw1LjI1IDIxSDE1TDE1Ljc1IDIwLjI1VjE3LjI1SDE4Ljc1TDE5LjUgMTYuNVpNMTUuNzUgMTUuNzVMMTUuNzUgOC4yNUwxNSA3LjVMOS43NSA3LjVWNS4yNUwxOCA1LjI1VjE1Ljc1SDE1Ljc1Wk02IDlMMTQuMjUgOUwxNC4yNSAxOS41TDYgMTkuNUw2IDlaIi8+PC9zdmc+",
+      "author": "Amir Bazylkhanov",
+      "homepage": "https://github.com/Amir-Bazylkhanov/dsh-composer-prediction#readme",
+      "repository": {
+        "url": "https://github.com/Amir-Bazylkhanov/dsh-composer-prediction"
+      },
+      "versions": [
+        {
+          "version": "0.7.4",
+          "publishTimestamp": 1792260140,
+          "source": {
+            "type": "npm"
+          },
+          "engines": {
+            "dsh": ">=0.2.0-rc.2 <0.3.0-0"
+          }
+        }
+      ]
+    }
+  ]
+}
