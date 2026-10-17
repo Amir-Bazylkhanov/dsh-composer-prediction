@@ -8,11 +8,11 @@
   "author": "Dituar (https://github.com/Amir-Bazylkhanov)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amir-Bazylkhanov/dsh-composer-predict.git"
+    "url": "git+https://github.com/Amir-Bazylkhanov/dsh-composer-prediction.git"
   },
-  "homepage": "https://github.com/Amir-Bazylkhanov/dsh-composer-predict#readme",
+  "homepage": "https://github.com/Amir-Bazylkhanov/dsh-composer-prediction#readme",
   "bugs": {
-    "url": "https://github.com/Amir-Bazylkhanov/dsh-composer-predict/issues"
+    "url": "https://github.com/Amir-Bazylkhanov/dsh-composer-prediction/issues"
   },
   "publishConfig": {
     "access": "public"
