@@ -1,0 +1,23 @@
+Third-party assets
+==================
+
+Settings navigation glyph
+-------------------------
+
+- Source: SVG Repo — https://www.svgrepo.com
+  Downloaded as `copy-svgrepo-com.svg`; the file header records it as uploaded to
+  SVG Repo and transformed by SVG Repo Mixer Tools.
+- License: SVG Repo's default licence, which permits using the material as part
+  of a project (including commercial projects) and remixing it, asks for — but
+  does not require — an "Icons by svgrepo.com" credit, and forbids redistributing
+  the material on its own or reselling it as-is.
+  Terms: https://www.svgrepo.com/page/licensing/
+- Individual icon pages can state a different licence and take precedence. The
+  downloaded file carries no icon-page URL, so the exact collection could not be
+  resolved; this notice is the conservative attribution for that case.
+- Modification: the path data is embedded as an alpha mask in the client bundle
+  (`lib/client-body.js`, `NAV_GLYPH_SVG`), its viewBox is cropped to the artwork
+  bounds, and its fill colour is replaced with `currentColor` at render time.
+
+Everything else in this package was written for this project and is covered by
+the MIT licence in LICENSE.

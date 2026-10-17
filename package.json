@@ -1,11 +1,11 @@
 {
   "name": "dsh-composer-prediction",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Codex-style composer predictions for DeepSeek Harness: after each assistant turn, suggest the user's next message as ghost text in the composer. Tab accepts, Escape dismisses.",
   "type": "module",
   "main": "lib/index.js",
   "license": "MIT",
-  "author": "Dituar (https://github.com/Amir-Bazylkhanov)",
+  "author": "Amir Bazylkhanov (https://github.com/Amir-Bazylkhanov)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Amir-Bazylkhanov/dsh-composer-prediction.git"
@@ -51,7 +51,8 @@
     "lib/",
     "cordis.patch.yml",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICE"
   ],
   "engines": {
     "dsh": ">=0.2.0-rc.2 <0.3.0-0"
