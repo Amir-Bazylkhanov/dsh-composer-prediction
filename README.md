@@ -139,7 +139,7 @@ factory the host serves — no bundler, no dependencies, no network.
 
 ```sh
 node scripts/build-client.mjs   # regenerate lib/client.js
-node scripts/test.mjs           # 27 assertions across shared/host/client
+node scripts/test.mjs           # 32 assertions across shared/host/client
 node --check lib/index.js
 ```
 
