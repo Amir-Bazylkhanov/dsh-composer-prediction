@@ -1,0 +1,23 @@
+# dsh-composer-predict bundle patch: inserts the host half into the
+# composition. The host half persists its own config document
+# (`<dsh home>/composer-predict.json`) and owns the loopback RPC route
+# /api/composer-predict/rpc:
+#   config.get / config.set - read / merge-persist the config document
+#   predict                 - one next-user-message prediction
+#   cancel                  - abort an in-flight prediction by requestId
+#
+# Config is deliberately NOT registered with ctx.settings: the 0.2.x service is
+# a form layer over loader entries (update(entryId, patch)) and no longer returns
+# the 0.1.x `register(ns, schema)` scope, so a plugin cannot own a live
+# namespace that way.
+#
+# `llm` is the harness model service: predictions ride the deployment's own
+# provider route and credentials, so no separate API key is needed. The route
+# itself is registered through connection.fetch (0.1.5+); older runtimes fall
+# back to connection.rpc.handle, which additionally requires webServer in the
+# fiber. `agentDefaultModel` is resolved separately with ctx.inject because it
+# is optional.
+- insert:
+    - id: composer-predict
+      name: dsh-composer-predict
+      inject: [connection, llm]

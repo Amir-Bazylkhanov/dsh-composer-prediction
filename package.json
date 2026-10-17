@@ -1,0 +1,69 @@
+{
+  "name": "dsh-composer-predict",
+  "version": "0.7.2",
+  "description": "Codex-style composer predictions for DeepSeek Harness: after each assistant turn, suggest the user's next message as ghost text in the composer. Tab accepts, Escape dismisses.",
+  "type": "module",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "author": "Dituar (https://github.com/Amir-Bazylkhanov)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amir-Bazylkhanov/dsh-composer-predict.git"
+  },
+  "homepage": "https://github.com/Amir-Bazylkhanov/dsh-composer-predict#readme",
+  "bugs": {
+    "url": "https://github.com/Amir-Bazylkhanov/dsh-composer-predict/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "composer",
+    "prediction",
+    "ghost-text",
+    "tab-to-accept"
+  ],
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "files": [
+    "lib/",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "dsh": ">=0.2.0-rc.2 <0.3.0-0"
+  },
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "test": "node scripts/test.mjs",
+    "check": "node scripts/build-client.mjs && node scripts/test.mjs && node --check lib/index.js && node --check lib/client.js",
+    "prepack": "npm run check"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.0",
+    "react": "^18.2.0"
+  }
+}
