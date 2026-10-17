@@ -37,13 +37,19 @@ accept one, mirroring #54197's rule that offers are ephemeral.
 
 ## Install
 
-From the directory containing this package:
+From the npm registry (once published):
+
+```sh
+dsh plugin --profile <your-profile> add dsh-composer-predict
+```
+
+Or straight from a checkout:
 
 ```sh
 dsh plugin --profile <your-profile> add ./dsh-composer-predict --config.auto-install-peers=false
 ```
 
-`dsh` links the checkout into the profile and appends the bundle to
+`dsh` links the package into the profile and appends the bundle to
 `dsh.profile.bundles` because the package declares `dsh.bundle`. Restart the app
 afterwards (a page refresh only reloads the browser half).
 
