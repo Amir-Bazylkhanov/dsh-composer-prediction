@@ -27,7 +27,7 @@ contributes (`settings.section`), because the shipped Plugins page is read-only.
 
 ## Install
 
-From the npm registry (once published):
+From the [npm registry](https://www.npmjs.com/package/dsh-composer-prediction):
 
 ```sh
 dsh plugin --profile <your-profile> add dsh-composer-prediction
