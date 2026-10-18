@@ -1,6 +1,6 @@
 # dsh-composer-prediction
 
-Codex-style **composer predictions** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
+ChatGPT-style **composer predictions** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
 
 After each assistant turn, the plugin asks a cheap chat model for the message you
 are most likely to send next and paints it as **ghost text in the empty

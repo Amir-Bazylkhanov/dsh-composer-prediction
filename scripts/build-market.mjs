@@ -39,7 +39,7 @@ const index = {
 			name: pkg.name,
 			title: { en: 'Composer predictions', zh: '输入框预测' },
 			description: {
-				en: 'Codex-style ghost-text suggestions for your next message in the DSH composer. Tab accepts, Esc dismisses.',
+				en: 'ChatGPT-style ghost-text suggestions for your next message in the DSH composer. Tab accepts, Esc dismisses.',
 				zh: '在 DSH 输入框中用灰色 ghost 文本建议你的下一条消息。Tab 采纳，Esc 关闭。',
 			},
 			icon,
