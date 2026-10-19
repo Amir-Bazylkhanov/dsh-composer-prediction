@@ -35,7 +35,7 @@ function loadBundle() {
 	vm.createContext(sandbox)
 	vm.runInContext(SOURCE, sandbox)
 	assert.ok(definition !== null, 'bundle never called __ModuleLoader__.load')
-	return { definition, window, listeners }
+	return { definition, window, listeners, FakeHTMLElement }
 }
 
 const noop = () => {}
@@ -233,6 +233,74 @@ test('an offer survives switching away and back until it is used', () => {
 	assert.equal(api.suggest('Try again.'), true)
 	api.forget('s1')
 	api.showSession('s1')
+	assert.equal(api.state().text, '')
+})
+
+test('Tab and Escape belong to the composer while the draft is non-empty', () => {
+	const { definition, window, listeners, FakeHTMLElement } = loadBundle()
+	const plugin = definition.factory(fakeRequire)
+	let overlay = null
+	const services = {
+		slots: {
+			inject: (key, callback) => callback(),
+			register: (meta, component) => {
+				if (meta.name === 'conversation.input.overlay') overlay = component
+				return () => {}
+			},
+		},
+		locale: { register: () => () => {} },
+		connection: {},
+	}
+	plugin.apply({ get: (name) => services[name], effect: (fn) => { fn() } })
+	assert.ok(overlay !== null)
+	const api = window.__composerPredict
+	const keydown = listeners.find((entry) => entry.type === 'keydown')
+	assert.ok(keydown !== undefined, 'keydown listener missing')
+
+	const drafts = []
+	const render = (draft) => overlay({
+		sessionId: 's1',
+		useInput: (selector) => selector({ draft }),
+		useSession: (selector) => selector({ running: false }),
+		useChat: (selector) => selector({ legacy: { nodes: [] } }),
+		useAssist: (selector) => selector(api.state()),
+		useConfig: (selector) => selector({ enabled: true }),
+		inputActions: { setDraft: (text) => drafts.push(text) },
+		t: (key) => key,
+		api,
+	})
+
+	// An offer exists for the turn and the composer shows the ghost.
+	render('')
+	assert.equal(api.suggest('Run the integration tests.'), true)
+
+	const target = new FakeHTMLElement()
+	target.isContentEditable = true
+	target.closest = () => ({})
+	const tabEvent = () => ({
+		key: 'Tab', keyCode: 9, isComposing: false,
+		shiftKey: false, ctrlKey: false, altKey: false, metaKey: false,
+		target,
+		preventDefault() { this.prevented = true },
+		stopPropagation() { this.stopped = true },
+	})
+
+	// Typing '@' (the file picker) hides the ghost but keeps the offer cached:
+	// Tab must reach the composer untouched and must not insert the prediction.
+	render('@_c')
+	const pickerTab = tabEvent()
+	keydown.handler(pickerTab)
+	assert.equal(pickerTab.prevented, undefined)
+	assert.equal(pickerTab.stopped, undefined)
+	assert.deepEqual(drafts, [])
+	assert.equal(api.state().text, 'Run the integration tests.')
+
+	// Back on the empty composer the same gesture accepts the offer again.
+	render('')
+	const acceptTab = tabEvent()
+	keydown.handler(acceptTab)
+	assert.equal(acceptTab.prevented, true)
+	assert.deepEqual(drafts, ['Run the integration tests.'])
 	assert.equal(api.state().text, '')
 })
 
