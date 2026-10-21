@@ -39,8 +39,8 @@ const index = {
 			name: pkg.name,
 			title: { en: 'Composer predictions', zh: '输入框预测' },
 			description: {
-				en: 'ChatGPT-style ghost-text suggestions for your next message in the DSH composer. Tab accepts, Esc dismisses.',
-				zh: '在 DSH 输入框中用灰色 ghost 文本建议你的下一条消息。Tab 采纳，Esc 关闭。',
+				en: 'ChatGPT-style ghost-text suggestions for your next message in the DSH composer. Tab accepts, Esc dismisses. Not compatible with other composer ghost-text plugins.',
+				zh: '在 DSH 输入框中用灰色 ghost 文本建议你的下一条消息。Tab 采纳，Esc 关闭。不要与其他输入框 ghost 文本插件同时安装。',
 			},
 			icon,
 			author,

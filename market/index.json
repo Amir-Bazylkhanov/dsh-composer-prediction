@@ -12,8 +12,8 @@
         "zh": "输入框预测"
       },
       "description": {
-        "en": "ChatGPT-style ghost-text suggestions for your next message in the DSH composer. Tab accepts, Esc dismisses.",
-        "zh": "在 DSH 输入框中用灰色 ghost 文本建议你的下一条消息。Tab 采纳，Esc 关闭。"
+        "en": "ChatGPT-style ghost-text suggestions for your next message in the DSH composer. Tab accepts, Esc dismisses. Not compatible with other composer ghost-text plugins.",
+        "zh": "在 DSH 输入框中用灰色 ghost 文本建议你的下一条消息。Tab 采纳，Esc 关闭。不要与其他输入框 ghost 文本插件同时安装。"
       },
       "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNy4yNSIgdmlld0JveD0iNC41IDMuNzUgMTUgMTcuMjUiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuNSAxNi41TDE5LjUgNC41TDE4Ljc1IDMuNzVIOUw4LjI1IDQuNUw4LjI1IDcuNUw1LjI1IDcuNUw0LjUgOC4yNVYyMC4yNUw1LjI1IDIxSDE1TDE1Ljc1IDIwLjI1VjE3LjI1SDE4Ljc1TDE5LjUgMTYuNVpNMTUuNzUgMTUuNzVMMTUuNzUgOC4yNUwxNSA3LjVMOS43NSA3LjVWNS4yNUwxOCA1LjI1VjE1Ljc1SDE1Ljc1Wk02IDlMMTQuMjUgOUwxNC4yNSAxOS41TDYgMTkuNUw2IDlaIi8+PC9zdmc+",
       "author": "Amir Bazylkhanov",

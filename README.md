@@ -15,6 +15,7 @@ contributes (`settings.section`), because the shipped Plugins page is read-only.
 |---|---|
 | Assistant turn ends (`running: true → false`) | A prediction is requested after the configured delay |
 | Composer is not empty, or you are already typing | Nothing is requested or shown |
+| An IME composition is active (`data-composer-composing`) | No new prediction is requested and the offer is hidden for the turn, until the composition ends |
 | **Tab** while a prediction is visible | The whole suggestion is inserted into the draft; nothing is sent |
 | **Esc** while a prediction is visible | The offer is withdrawn and not repeated for that turn |
 | You open a session that already has an assistant answer | One prediction is made for its latest turn, then deduped per session + turn |
@@ -171,6 +172,26 @@ __composerPredict.state()
 __composerPredict.clear()
 __composerPredict.predictNow()   // re-run the real prediction path
 ```
+
+## Coexistence
+
+Install only one composer ghost-text plugin. A plugin such as `dsh-next-hint`
+paints a suggestion into the same empty composer for the same finished turn, so
+installing both means two overlapping ghosts and two model calls per turn. Both
+also accept `Tab` while a ghost is visible, so one Tab press can act on both
+offers. Pick one.
+
+If both are installed anyway, this plugin stands down at runtime: it checks the
+client module manifest for known ghost-text packages (`dsh-next-hint`), watches
+the composer overlay slot for ghost-like entries, and recognises
+`dsh-next-hint`'s `data-next-hint*` DOM markers. While a conflict is detected no
+prediction is requested or painted, Tab/Esc stay untouched, and
+**Settings → Predictions** says why. Detection also re-runs on DOM and slot
+changes, so a plugin that mounts late is caught before the next turn.
+
+Ghost-text plugins can also opt into the shared `data-composer-ghost` attribute
+on their host element (this plugin sets `data-composer-ghost="dsh-composer-prediction"`);
+a plugin that sees a foreign value pauses the same way.
 
 ## Limitations
 
