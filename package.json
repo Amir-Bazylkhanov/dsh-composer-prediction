@@ -1,6 +1,6 @@
 {
   "name": "dsh-composer-prediction",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "ChatGPT-style composer predictions for DeepSeek Harness: after each assistant turn, suggest the user's next message as ghost text in the composer. Tab accepts, Escape dismisses.",
   "type": "module",
   "main": "lib/index.js",
