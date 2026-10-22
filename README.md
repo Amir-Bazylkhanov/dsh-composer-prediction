@@ -189,9 +189,18 @@ prediction is requested or painted, Tab/Esc stay untouched, and
 **Settings → Predictions** says why. Detection also re-runs on DOM and slot
 changes, so a plugin that mounts late is caught before the next turn.
 
-Ghost-text plugins can also opt into the shared `data-composer-ghost` attribute
-on their host element (this plugin sets `data-composer-ghost="dsh-composer-prediction"`);
-a plugin that sees a foreign value pauses the same way.
+Ghost-text plugins can opt into the shared `data-composer-ghost` attribute **on
+their painted ghost node**, present only while a suggestion is visible (this
+plugin sets `data-composer-ghost="dsh-composer-prediction"` there). The
+always-mounted anchor is marked with `data-composer-predict` instead, so a
+plugin can tell "this plugin is loaded" from "a suggestion is visible". A plugin
+that wants dynamic deference can gate on the marker; this plugin's own pause is
+presence-level.
+
+Deference here is one-way by design: while another ghost plugin is present this
+plugin stays paused, even between that plugin's offers, so with both installed
+`dsh-next-hint` is the deterministic winner and the two never race for the same
+composer.
 
 ## Limitations
 

@@ -177,7 +177,8 @@ test('the overlay component renders without throwing for an idle empty composer'
 	})
 	assert.ok(element !== null && typeof element === 'object')
 	assert.equal(element.props['data-composer-predict'], '')
-	assert.equal(element.props['data-composer-ghost'], GHOST_MARKER_VALUE)
+	// The shared marker is per-offer; an idle anchor must not advertise a ghost.
+	assert.equal(element.props['data-composer-ghost'], undefined)
 })
 
 test('a visible suggestion renders ghost text and the hint', () => {
@@ -212,6 +213,61 @@ test('a visible suggestion renders ghost text and the hint', () => {
 	// Geometry is measured in a layout effect (not run by the fake React), so
 	// the first paint is the bare anchor; the store still carries the offer.
 	assert.equal(element.props['data-composer-predict'], '')
+})
+
+test('the shared marker sits on the painted ghost, not the idle anchor', () => {
+	const { definition } = loadBundle()
+	const geometry = {
+		top: 0,
+		left: 0,
+		width: 200,
+		fontFamily: 'Inter',
+		fontSize: '14px',
+		fontWeight: '400',
+		lineHeight: '20px',
+		letterSpacing: '0',
+	}
+	const originalUseState = fakeReact.useState
+	// Pretend the measurement pass already ran: the first useState(null) is the
+	// geometry holder, the second (false) is the switching flag.
+	fakeReact.useState = (value) => [value === null ? geometry : typeof value === 'function' ? value() : value, noop]
+	try {
+		const plugin = definition.factory(fakeRequire)
+		let overlay = null
+		const services = {
+			slots: {
+				inject: (key, callback) => callback(),
+				register: (meta, component) => {
+					if (meta.name === 'conversation.input.overlay') overlay = component
+					return () => {}
+				},
+			},
+			locale: { register: () => () => {} },
+			connection: {},
+		}
+		plugin.apply({ get: (name) => services[name], effect: () => {} })
+		assert.ok(overlay !== null)
+		const assist = { text: 'Run the integration tests.', sessionId: 's1', turn: 3, fetching: false, error: '' }
+		const element = overlay({
+			sessionId: 's1',
+			useInput: (selector) => selector({ draft: '' }),
+			useSession: (selector) => selector({ running: false }),
+			useChat: (selector) => selector({ legacy: { nodes: [] } }),
+			useAssist: (selector) => selector(assist),
+			useConfig: (selector) => selector({ enabled: true }),
+			useComposing: (selector) => selector({ composing: false }),
+			useConflict: (selector) => selector({ active: false, name: '' }),
+			inputActions: { setDraft: () => {} },
+			t: (key) => key,
+			api: { schedule: () => {}, accept: () => false, dismiss: () => false, clear: () => {} },
+		})
+		const ghost = element.children[0]
+		assert.ok(ghost !== null && ghost !== undefined, 'ghost node missing')
+		assert.equal(ghost.props['data-composer-ghost'], GHOST_MARKER_VALUE)
+		assert.equal(element.props['data-composer-ghost'], undefined)
+	} finally {
+		fakeReact.useState = originalUseState
+	}
 })
 
 test('an offer survives switching away and back until it is used', () => {
